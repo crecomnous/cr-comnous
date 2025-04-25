@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Meta Viewport pour le responsive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>CRECOM | Conseil & Création</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e1b16;
+      color: #fff;
+    }
+
+    /* NAVIGATION */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      background-color: rgba(19, 39, 32, 0.9);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar img {
+      height: 60px;
+    }
+
+    .nav-links a {
+      color: #7ded9f;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #f0c674;
+    }
+
+    /* HEADER AVEC SLIDER */
+    header {
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 1s ease-in-out;
+      position: relative;
+      z-index: 0;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      color: #f0c674;
+      margin-bottom: 20px;
+    }
+
+    header p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto;
+      color: #ccc;
+    }
+
+    .section {
+      padding: 60px 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      font-size: 2.5em;
+      color: #7ded9f;
+      margin-bottom: 15px;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.2em;
+      line-height: 2;
+    }
+
+    .section ul li::before {
+      content: "✔️ ";
+      color: #7ded9f;
+    }
+
+    /* À PROPOS */
+    .about-text {
+      font-size: 1.1em;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    /* FORMULAIRE DE CONTACT */
+    .contact-form {
+      background-color: #1f3c32;
+      border-radius: 8px;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+
+    .contact-form h2 {
+      text-align: center;
+      color: #7ded9f;
+      margin-bottom: 30px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      background-color: #eaeaea;
+      color: #000;
+    }
+
+    .contact-form button {
+      background-color: #7ded9f;
+      color: #000;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .contact-form button:hover {
+      background-color: #5be284;
+    }
+
+    footer {
+      background-color: #132720;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+
+    .floating-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1001;
+    }
+
+    .floating-icons a {
+      background-color: #25D366;
+      color: white;
+      padding: 10px 12px;
+      border-radius: 50%;
+      font-size: 20px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 0 10px #000;
+      transition: background-color 0.3s;
+    }
+
+    .floating-icons a.facebook {
+      background-color: #3b5998;
+    }
+
+    .floating-icons a.linkedin {
+      background-color: #0077b5;
+    }
+
+    .floating-icons a:hover {
+      opacity: 0.8;
+    }
+
+    /* RESPONSIVE STYLES */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links a {
+        margin-left: 0;
+        margin-top: 10px;
+        font-size: 1em;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      header p {
+        font-size: 1em;
+      }
+
+      .section h2 {
+        font-size: 1.8em;
+      }
+
+      .contact-form form {
+        padding: 20px;
+      }
+
+      .contact-form input, 
+      .contact-form textarea {
+        padding: 12px;
+        font-size: 0.9em;
+      }
+
+      .contact-form button {
+        padding: 12px;
+        font-size: 0.9em;
+      }
+
+      .section img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <div class="navbar">
+    <img src="LOGO CRECOMA.png" alt="LOGO CRECOM">
+    <div class="nav-links">
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#communication">Communication</a>
+      <a href="#art">Art</a>
+      <a href="#management">Management</a>
+      <a href="#marketing">Marketing</a>
+      <a href="#technologie">Technologie</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- HEADER AVEC SLIDER -->
+  <header id="accueil">
+    <h1>CRECOM</h1>
+    <p>Consultant – Marketing – Création – Management – Coaching</p>
+  </header>
+
+  <!-- À PROPOS -->
+  <div class="section" id="apropos">
+    <h2>À propos de CRECOM</h2>
+    <p class="about-text">
+      Créée le 5 décembre 2020, CRECOM est une structure ivoirienne spécialisée dans le conseil stratégique, la création digitale, le marketing innovant, la gestion de projet et le coaching personnalisé. Depuis sa création, CRECOM a su se positionner comme un partenaire incontournable pour les entreprises, marques, artistes et porteurs de projets désireux d’atteindre leurs objectifs avec efficacité, créativité et impact.
+      <br><br>
+      L’équipe de CRECOM est composée de professionnels passionnés par l’évolution des tendances, la valorisation des talents et la croissance des initiatives locales. Que ce soit à travers des stratégies de communication puissantes, la conception de visuels de haute qualité, l’accompagnement en développement personnel ou le management artistique, chaque service est pensé pour transformer les idées en résultats concrets.
+      <br><br>
+      Forte d’une expérience diversifiée et ancrée dans le dynamisme de la Côte d'Ivoire(Abidjan), CRECOM ne cesse d’innover pour proposer des solutions personnalisées et durables. Notre mission : connecter, inspirer et faire rayonner vos ambitions mais le plus important pour nous est de promouvoir l'entrepreneuriat.
+    </p>
+  </div>
+
+  <!-- COMMUNICATION -->
+  <div class="section" id="communication">
+    <img src="Affiche création digitale.png" alt="Communication CRECOM">
+    <h2>Communication</h2>
+    <ul>
+      <li>Création digitale</li>
+      <li>Infographie</li>
+      <li>Création de Contenu</li>
+      <li>Stratégie de Communication</li>
+      <li>Gestion des médias sociaux</li>
+    <!-- Texte explicatif ajouté -->
+  <div class="section">
+    <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+      Chez <strong>CRECOM</strong>, la communication ne se limite pas à transmettre un message. Elle consiste à <strong>créer une identité forte</strong>, à <strong>connecter des émotions</strong>, et à <strong>captiver durablement votre audience</strong>. C’est dans cette vision que nous avons bâti notre <strong>volet Communication</strong>, autour de trois piliers stratégiques : <strong>la création digitale</strong>, <strong>l’infographie professionnelle</strong>, et <strong>la gestion optimisée des médias sociaux</strong>.
+    </p>
+
+    <br>
+
+    <h3 style="color: #7ded9f;">🎨 Création Digitale : Votre Univers Visuel sur Mesure</h3>
+    <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+      Dans un monde où l’image est reine, CRECOM met à votre disposition une équipe créative capable de <strong>donner vie à vos idées</strong> à travers des supports visuels puissants et percutants. Que ce soit pour des visuels publicitaires, des affiches, des animations ou des contenus interactifs, notre mission est de concevoir des productions <strong>uniques, modernes et mémorables</strong>, en parfaite harmonie avec votre image de marque.
+    </p>
+
+    <br>
+
+    <h3 style="color: #7ded9f;">🧩 Infographie : L’Information rendue Impactante</h3>
+    <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+      L’infographie est notre arme secrète pour <strong>simplifier le complexe</strong> et <strong>attirer le regard</strong>. Grâce à des designs visuels structurés, des graphiques clairs et une hiérarchisation stratégique de l’information, nous transformons des données brutes en <strong>contenus digestes, élégants et facilement partageables</strong>. L’infographie chez CRECOM, c’est l’alliance entre <strong>la clarté du message</strong> et <strong>l’excellence du design</strong>.
+    </p>
+
+    <br>
+
+    <h3 style="color: #7ded9f;">📱 Gestion des Médias Sociaux : Construire et Entretenir votre Communauté</h3>
+    <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+      Avoir de bons visuels ne suffit pas s’ils ne sont pas <strong>diffusés stratégiquement</strong>. C’est pourquoi notre équipe assure une <strong>gestion intelligente de vos réseaux sociaux</strong>, en créant un calendrier éditorial sur mesure, en animant vos pages avec du contenu engageant, et en interagissant avec votre communauté pour booster votre visibilité. CRECOM transforme vos réseaux sociaux en <strong>véritables leviers de croissance</strong>.
+    </p>
+
+    <br>
+
+    <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+      <strong>En résumé :</strong> Le volet <strong>Communication</strong> de CRECOM est pensé pour celles et ceux qui veulent <strong>se démarquer avec style</strong>, <strong>communiquer avec impact</strong>, et <strong>étendre leur influence</strong> dans l’univers numérique. En combinant <strong>créativité, stratégie et innovation</strong>, nous construisons avec vous une présence digitale <strong>cohérente, attractive et performante</strong>.
+    </p>
+  </div>
+</div>
+    </ul>
+  </div>
+
+  <!-- ART -->
+  <div class="section" id="art">
+    <img src="Art flyers.png" alt="Art CRECOM">
+    <h2>Art</h2>
+    <ul>
+      <li>Manager Artistique</li>
+      <li>Chasseur de Talent</li>
+      <li>Promotion Artistique</li>
+      <li>Création Digitale</li>
+      <!-- Texte explicatif ajouté au volet Art -->
+<div class="section">
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    Le volet Artistique de CRECOM est une fusion entre vision créative, sensibilité culturelle et stratégie de développement. Chez nous, l’art n’est pas un simple domaine, c’est une <strong>mission profonde</strong> : celle de <strong>révéler des talents</strong>, <strong>accompagner des vocations</strong>, et <strong>propulser des carrières artistiques</strong> dans un écosystème structuré, professionnel et innovant.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🎭 Direction Artistique & Management Créatif</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Nous mettons à disposition des artistes, des créateurs et des porteurs de projets un accompagnement sur mesure en <strong>direction artistique</strong>. De la définition d’un univers visuel à la construction d’une identité de marque artistique, notre approche est basée sur l’écoute, la cohérence et la créativité. CRECOM devient un <strong>véritable manager stratégique</strong> pour celles et ceux qui souhaitent structurer leur carrière dans le domaine artistique avec professionnalisme.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🔍 Chasse de Talents : L’Œil qui Découvre</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Notre équipe est constamment à l’affût de nouveaux talents, de jeunes artistes prometteurs ou de professionnels en devenir. Grâce à un réseau solide et à un flair artistique affûté, nous identifions des profils rares, inspirants et porteurs de potentiel. Nous ne découvrons pas seulement des artistes, nous les <strong>révélons</strong>.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🚀 Promotion Artistique & Visibilité Stratégique</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    La promotion artistique chez CRECOM ne se limite pas à de simples publications. Elle est le fruit d’une <strong>stratégie multicanale</strong> : création de contenus percutants, gestion de relations médias, campagnes digitales ciblées, diffusion sur les bonnes plateformes au bon moment. Nous bâtissons avec chaque artiste une image cohérente et une <strong>présence forte dans son domaine</strong>.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">💡 Création Digitale au Service de l’Art</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Nos compétences en design graphique, en animation visuelle et en contenu numérique sont mises au service de la cause artistique. Flyers, clips, visuels, teasers, portfolios digitaux… Chaque création vise à <strong>amplifier le message artistique</strong> tout en respectant l’univers propre à chaque créateur. L'art rencontre ici le digital, dans une <strong>harmonie créative et stratégique</strong>.
+  </p>
+
+  <br>
+
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    <strong>En conclusion :</strong> Le pôle <strong>Art de CRECOM</strong> est un espace de valorisation, de professionnalisation et de rayonnement. C’est le carrefour où l’inspiration rencontre la stratégie, où les talents naissants deviennent des marques artistiques fortes, et où chaque projet devient une œuvre complète, pensée pour <strong>émouvoir, marquer et durer</strong>.
+  </p>
+</div>
+    </ul>
+  </div>
+
+  <!-- MANAGEMENT -->
+  <div class="section" id="management">
+    <img src="Management flyers.png" alt="Management CRECOM">
+    <h2>Management</h2>
+    <ul>
+      <li>Supervision et Gestion de projet</li>
+      <li>Stratégie d’Amélioration KPI</li>
+      <li>Formation et Recrutement commercial</li>
+      <li>Management Artistique</li>
+    </ul>
+    <!-- Texte explicatif ajouté au volet Management -->
+<div class="section">
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    Le pôle <strong>Management de CRECOM</strong> incarne une vision structurée, humaine et stratégique de la gestion d’activités. Que ce soit dans le domaine artistique, entrepreneurial ou commercial, notre expertise repose sur une approche moderne du leadership, de la performance et du développement des talents.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">📊 Supervision & Gestion de Projet</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    CRECOM accompagne les organisations et les porteurs de projet dans la <strong>gestion efficace de leurs opérations</strong>. Nous assurons le pilotage global des projets, le suivi des indicateurs de performance, la coordination des équipes, le respect des délais et des budgets, avec une approche agile et orientée résultats. Nos outils et méthodes permettent de transformer chaque idée en une réalisation concrète et maîtrisée.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">📈 Stratégie d'Amélioration des KPI & Performance Globale</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    La performance d'une entreprise repose sur sa capacité à <strong>suivre, analyser et améliorer ses KPI</strong> (indicateurs clés). Chez CRECOM, nous mettons en place des solutions adaptées pour aider nos partenaires à comprendre leurs données, prendre les bonnes décisions, et optimiser leurs résultats à chaque niveau de leur activité.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🎨 Management Artistique : Structuration & Vision</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Le management artistique chez CRECOM, c’est plus qu’un accompagnement : c’est une démarche de structuration professionnelle d’un parcours créatif. De la planification des activités à la création de réseaux, nous aidons les artistes à se gérer comme de véritables marques, avec des objectifs clairs, une vision affirmée, et des résultats concrets.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🧠 Formation Commerciale & Coaching d’Équipe</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Nous proposons des <strong>formations commerciales adaptées aux réalités du marché ivoirien</strong>, avec des modules pratiques sur la prospection, la négociation, la fidélisation client et la gestion de portefeuille. Nos programmes s’adressent aussi bien aux débutants qu’aux commerciaux expérimentés, et sont conçus pour <strong>développer la confiance, l’efficacité et l’impact sur le terrain</strong>.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">👥 Recrutement Commercial : Trouver les Bons Profils</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Le bon commercial, c’est celui qui comprend vos objectifs et sait les transformer en résultats. CRECOM accompagne les entreprises dans le <strong>recrutement, la sélection et l'intégration de commerciaux compétents</strong>, motivés et alignés sur la vision de l’organisation. Grâce à notre réseau local et notre méthode d’évaluation terrain, nous mettons en relation les bons profils avec les bons projets.
+  </p>
+
+  <br>
+
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    <strong>En résumé :</strong> Le volet <strong>Management de CRECOM</strong> est un catalyseur de transformation. Que vous soyez artiste, entrepreneur ou porteur d’un projet commercial, nous vous accompagnons pour structurer, performer et évoluer. C’est la rencontre entre l’organisation, le leadership et l’humain.
+  </p>
+</div>
+  </div>
+
+  <!-- MARKETING -->
+  <div class="section" id="marketing">
+    <img src="Marketing Flyers.png" alt="Marketing CRECOM">
+    <h2>Marketing</h2>
+    <ul>
+      <li>Marketing Relationnel</li>
+      <li>Stratégie de Prospection</li>
+      <li>Stratégie Promotionnelle</li>
+      <li>Gestion des Médias Sociaux</li>
+      <li>Création Digitale</li>
+    </ul>
+    <!-- Texte explicatif ajouté au volet Marketing -->
+<div class="section">
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    Chez <strong>CRECOM</strong>, le marketing est une arme puissante au service de la visibilité, de l’engagement et de la croissance. Notre expertise s’étend du terrain au digital, avec une approche moderne et personnalisée qui combine créativité, stratégie et proximité avec la réalité ivoirienne.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🔍 Marketing Relationnel & Fidélisation</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Le marketing relationnel chez CRECOM repose sur la création de liens durables entre l’entreprise et ses clients. Grâce à une communication ciblée, une gestion attentive des retours et une approche centrée sur l’humain, nous aidons les marques à <strong>transformer chaque client en ambassadeur fidèle</strong>. La fidélisation devient alors un outil de croissance organique.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">📞 Stratégie de Prospection : Aller vers le client avec impact</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Avec une méthode fondée sur la connaissance du marché local, CRECOM conçoit et met en œuvre des <strong>plans de prospection efficaces</strong>, aussi bien en présentiel qu’en ligne. Nous combinons la puissance du marketing de terrain, des campagnes e-mail/SMS, des approches commerciales directes et des tunnels digitaux pour atteindre les bons prospects au bon moment.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🎯 Stratégie Promotionnelle : Booster votre visibilité</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Pour un produit ou un service, la réussite passe par une stratégie promotionnelle pertinente. CRECOM élabore des plans de promotion sur-mesure : offres ciblées, jeux-concours, campagnes sponsorisées, affichage, événementiel… tout est mis en œuvre pour <strong>créer un véritable élan autour de votre marque</strong>.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">📱 Gestion des Médias Sociaux</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Aujourd’hui, la présence sur les réseaux est essentielle. CRECOM assure une <strong>gestion dynamique, cohérente et stratégique de vos pages Facebook, Instagram, TikTok, LinkedIn</strong> et autres canaux clés. Nous créons du contenu impactant, interagissons avec les communautés et faisons grandir votre visibilité en ligne, tout en respectant les codes et tendances du moment.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🖌️ Création Digitale comme moteur du marketing</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Ce qui rend notre marketing unique, c’est l’intégration de la <strong>création digitale</strong> : visuels percutants, vidéos promotionnelles, carrousels animés, bannières modernes et stories professionnelles. Nos créations ne sont pas juste belles, elles servent des objectifs précis : attirer, convertir et fidéliser.
+  </p>
+
+  <br>
+
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    <strong>En résumé :</strong> le <strong>Marketing by CRECOM</strong> est un levier complet qui mêle proximité terrain, force commerciale, vision stratégique et innovation digitale. Notre objectif : faire briller votre marque et accélérer vos résultats.
+  </p>
+</div>
+  </div>
+
+  <!-- Technologie -->
+  <div class="section" id="technologie">
+    <img src="Affiche Technologie.png" alt="Technologie CRECOM">
+    <h2>Technologie & Coaching</h2>
+    <ul>
+      <li>Création et gestion de site web</li>
+      <li>Formation Intelligence Artificielle</li>
+      <li>Création et Gestion de Réseau d'entreprise</li>
+      <li>Technico commercial</li>
+    </ul>
+    <!-- Texte explicatif ajouté au volet Technologie -->
+<div class="section">
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    Le pôle <strong>Technologie</strong> de CRECOM est dédié à l’innovation, à la performance numérique et à la transformation digitale des entreprises et indépendants. Grâce à une approche pratique, centrée sur les besoins réels du marché local, nous offrons des solutions technologiques concrètes qui renforcent la compétitivité et la modernité de nos partenaires.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🌐 Création & Gestion de Sites Web</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Avoir une vitrine professionnelle en ligne est aujourd’hui indispensable. CRECOM conçoit des sites web modernes, responsives, sécurisés et adaptés à tous les secteurs. Que ce soit un site vitrine, un portfolio, un blog ou un site e-commerce, nous assurons le design, la structure, l’optimisation et la maintenance régulière. <strong>Votre image en ligne devient un levier de croissance.</strong>
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🤖 Formation en Intelligence Artificielle</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    L’IA n’est plus le futur : elle est déjà là. CRECOM propose des <strong>formations pratiques en intelligence artificielle</strong> adaptées aux entrepreneurs, commerciaux, créateurs de contenu et chefs de projet. De l’automatisation à la création assistée, nous vous montrons comment utiliser l’IA pour booster votre productivité, créer plus vite, mieux vendre et prendre de meilleures décisions.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">🔌 Création & Gestion de Réseaux d’Entreprise</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    Pour une entreprise performante, l’organisation technique et la circulation de l’information sont essentielles. Nous mettons en place des <strong>réseaux informatiques internes efficaces et sécurisés</strong>, adaptés à la taille et aux besoins spécifiques de chaque entreprise. Connexions optimisées, interconnexion de services, sécurité des données : nous connectons vos ressources pour mieux travailler.
+  </p>
+
+  <br>
+
+  <h3 style="color: #7ded9f;">💼 Expertise Technico-Commerciale</h3>
+  <p style="font-size: 1.1em; line-height: 1.8; color: #ccc;">
+    À la croisée de la technologie et de la vente, le technico-commercial de CRECOM accompagne les entreprises dans le <strong>choix et la vente de solutions techniques adaptées</strong>. Nos prestations vont de l’analyse des besoins techniques à la présentation commerciale des produits ou services, jusqu’à la gestion de la relation client post-vente. <strong>Nous transformons la technique en valeur commerciale.</strong>
+  </p>
+
+  <br>
+
+  <p style="font-size: 1.2em; line-height: 1.8; color: #ddd;">
+    <strong>En conclusion :</strong> le volet <strong>Technologie by CRECOM</strong> est un véritable accélérateur de transformation digitale, de montée en compétences et de structuration technique. Nous mettons la technologie au service de vos ambitions.
+  </p>
+</div>
+  </div>
+
+<div class="section contact-form" id="contact">
+  <h2>Contactez-Nous</h2>
+  <form id="contactForm" action="https://formspree.io/f/xnndnjwd" method="POST">
+    <input type="text" name="first_name" placeholder="Votre prénom" required>
+    <input type="text" name="last_name" placeholder="Votre nom" required>
+    <input type="email" name="email" placeholder="Votre adresse email" required>
+    
+    <div class="phone-wrapper" style="display: flex; gap: 5px;">
+      <select name="country_code" required style="width: 90px;">
+        <option value="+225" selected>Côte d'Ivoire (+225)</option>
+        <option value="+1">États-Unis (+1)</option>
+        <option value="+33">France (+33)</option>
+        <option value="+44">Royaume-Uni (+44)</option>
+        <option value="+49">Allemagne (+49)</option>
+        <option value="+212">Maroc (+212)</option>
+        <option value="+221">Sénégal (+221)</option>
+        <option value="+229">Bénin (+229)</option>
+        <option value="+234">Nigéria (+234)</option>
+        <option value="+237">Cameroun (+237)</option>
+        <option value="+241">Gabon (+241)</option>
+        <option value="+243">RDC (+243)</option>
+        <option value="+261">Madagascar (+261)</option>
+        <option value="+265">Malawi (+265)</option>
+        <option value="+27">Afrique du Sud (+27)</option>
+        <option value="+216">Tunisie (+216)</option>
+        <option value="+213">Algérie (+213)</option>
+        <option value="+20">Égypte (+20)</option>
+        <option value="+7">Russie (+7)</option>
+        <option value="+86">Chine (+86)</option>
+        <option value="+91">Inde (+91)</option>
+        <option value="+81">Japon (+81)</option>
+        <option value="+82">Corée du Sud (+82)</option>
+        <option value="+39">Italie (+39)</option>
+        <option value="+34">Espagne (+34)</option>
+      </select>
+      <input type="tel" name="contact" placeholder="Numéro de téléphone" required style="flex: 1;">
+    </div>
+
+    <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
+    <button type="submit">Envoyer</button>
+    <p id="formMessage" style="display: none; color: green; margin-top: 10px;">Message envoyé avec succès !</p>
+  </form>
+</div>
+
+<footer>
+  © 2025 CRECOM. Tous droits réservés. | Facebbok · LinkedIn · WhatsApp
+</footer>
+
+<!-- BOUTONS FLOTTANTS -->
+<div class="floating-icons">
+  <a href="https://wa.me/2250584643132" target="_blank" title="WhatsApp">📱</a>
+  <a href="https://www.facebook.com/profile.php?id=61571783352778" class="facebook" target="_blank" title="Facebook">f</a>
+  <a href="https://www.linkedin.com/company/cr%C3%A9com-nous/" class="linkedin" target="_blank" title="LinkedIn">in</a>
+</div>
+
+<!-- SCRIPT SLIDER -->
+<script>
+  const header = document.querySelector("header");
+  const images = [
+    "slide1.png",
+    "slider2.jpg",
+    "slider3.jpg"
+  ];
+  let index = 0;
+
+  function changeBackground() {
+    header.style.backgroundImage = `url('${images[index]}')`;
+    index = (index + 1) % images.length;
+  }
+
+  setInterval(changeBackground, 5000);
+  changeBackground(); // Initial load
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#contactForm");
+    const formMessage = document.querySelector("#formMessage");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+        .then(response => {
+          if (response.ok) {
+            formMessage.innerHTML = `<p style="color: green;"><strong>Message envoyé avec succès !</strong></p>`;
+            form.reset();
+            setTimeout(() => formMessage.innerHTML = '', 5000);
+          } else {
+            formMessage.innerHTML = `<p style="color: red;"><strong>Erreur lors de l’envoi.</strong></p>`;
+          }
+        })
+        .catch(error => {
+          formMessage.innerHTML = `<p style="color: red;"><strong>Une erreur s'est produite. Veuillez réessayer.</strong></p>`;
+          console.error("Erreur:", error);
+        });
+    });
+  });
+</script>
+</body>
+</html>
